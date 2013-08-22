@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.Campus;
+import model.Edital;
 import model.Eixo;
 import model.Projeto;
 
@@ -231,6 +232,37 @@ public class JDBC {
          */
         return resultset;
     }
+       public ArrayList<Edital> buscarEdital(String sql) throws ClassNotFoundException, SQLException {
+
+        try {
+            connect();
+            Statement com = con.createStatement();
+            ArrayList<Edital> list = new ArrayList<Edital>();
+            ResultSet rs = com.executeQuery(sql);
+            while (rs.next()) {
+                Edital edital = new Edital();
+                edital.setId(rs.getInt("idprojeto"));
+                edital.setNome(rs.getString("nome"));
+                edital.setInicio(rs.getDate("d_inicio"));
+                edital.setFim(rs.getDate("d_fim"));
+                //projeto.setPalavrasChaves(rs.getString("palavraschaves"));
+                //projeto.setCampus(com);
+                //projeto.setEixo(list);
+                edital.setArquivoPDF(rs.getInt("arquivos_idarquivos"));
+
+
+                list.add(edital);
+            }
+            disconnect();
+            return list;
+        } catch (SQLException | ClassNotFoundException ex) {
+            disconnect();
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
+
 //    ESTE É O TEMPLATE DO SEU MÉTODO, FAÇA USUFRUTO DELE COM SABEDORIA
 //    substitua os '<' '>' pelo dado correspondente
 //    public ArrayList<<Objeto>> obter<AlgumaCoisa>(<parametro>) throws ClassNotFoundException, SQLException {
