@@ -1,0 +1,42 @@
+/* 
+    Document   : css
+    Created on : 09/07/2013, 08:46:22
+    Author     : Augusto
+    Description:
+    CSS PAGINA imprimelista.jsp
+*/
+
+root { 
+    display: block;
+}
+div {
+    border:1px solid;
+}
+div#geral{margin:auto auto;}
+
+div#esquerda , div#direita { width:150px;
+}
+
+div#esquerda { float:left;}
+
+div#direita { float:right; }
+
+div#meio { margin-left: auto;
+           margin-right: auto;
+           
+
+}
+
+tr#linhaTabela:hover{
+    cursor:pointer;
+    background-color: #CCCCCC;
+}
+
+div#cabecalho, div#rodape {
+    heigth:50px;
+}
+div#rodape{clear: both;
+
+}
+
+

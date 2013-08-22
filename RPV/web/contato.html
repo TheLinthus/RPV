@@ -1,0 +1,107 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <body>
+        <div  style="text-align:left; 
+                              height:800; 
+                              width:300; 
+                              position: relative;
+                              font-family: arial;
+                              margin-top: 20px;
+                             margin-left: 350px;
+                             margin-right: auto;">
+            
+           Você pode entrar em contato através dos endereços eletrônicos:<br>
+              <ul TYPE="square">
+                <li>matheusdeoliveiramarinho@gmail.com</li>
+                <li>contato@matheusmarinho.com.br</li>
+             </ul>
+              Pelos telefones:
+              <UL TYPE="square">
+                <LI>(55) 3421 - 4318</LI>
+                <li>(55) 9120 - 2090</li>
+             </UL>
+              Ou ainda preencher o formulário abaixo e enviar sua mensagem.
+        </div>
+      <center>
+          <form name="contato" action="contato.php" method="POST">
+          <fieldset style="width: 450px; border: 8px solid aqua">
+              <legend> Deixe sua mensagem</legend>
+              
+            <table>
+              <tr>
+                <td>
+                  Nome:<br>
+                  <input name="nome" id="nome" type="text"  
+                         style="
+                               border-style: solid; 
+                               font-face: arial;
+                               font-size: 12;
+                               color: black;
+                               background-color: #ACCADE;
+                               border-color: #357CCA;
+                               border-width: 1px;">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Email:<br>
+                  <input type="email"  id="email" name="email"
+                         style="
+                               alignment-adjust: auto;
+                               border-style: solid; 
+                               font-face: arial;
+                               font-size: 12;
+                               color: black;
+                               background-color: #ACCADE;
+                               border-color: #357CCA;
+                               border-width: 1px;">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Assunto:<br>
+                  <input type="text"  id="assunto" name="assunto"
+                         style="
+                               border-style: solid; 
+                               font-face: arial;
+                               font-size: 12;
+                               color: black;
+                               background-color: #ACCADE;
+                               border-color: #357CCA;
+                               border-width: 1px;">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Mensagem:<br>
+                  <textarea id="mensagem" name="mensagem" maxlength=3500 
+                            style="border-style: solid; 
+                            font-face: verdana;
+                            font-size: 12;
+                            color: black;
+                            background-color: #ACCADE;
+                            border-color: #357CCA;
+                            border-width: 1px;">
+                      
+                  </textarea>
+                </td>
+              </tr>
+              <tr>
+                  <td align="right">
+                      <input type="submit" id="enviar" name="enviar" value="Enviar">
+                      <input type="reset" value="Limpar">
+                  </td>
+
+              </tr>
+            </table>
+          </fieldset>
+        </form>
+      </center>
+    <br>
+    <br>
+  </body>
+</html>
