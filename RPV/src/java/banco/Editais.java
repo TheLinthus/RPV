@@ -15,7 +15,7 @@ import model.Projeto;
  *
  * @author Garcia
  */
-public class Editais extends JDBC {{
+public class Editais extends JDBC {
 
     public ArrayList<model.Edital> getEditais(model.Coordenador c) {
         
