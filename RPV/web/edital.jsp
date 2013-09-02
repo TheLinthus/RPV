@@ -100,11 +100,11 @@
                     <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required/></p>
                     <p><input type="date" name="d_fim" value="<%=d_fim%>" required/></p>
                     <div class="styled-select">
-                        <p><select size="1" name="eixo">
+                         <p><select size="0" name="eixo" >
                                 <%for (int i = 0;
                                             i < listaDeEixos.size();
                                             i++) {%>
-                                <option <%if (eixo == i) {%>selected<%}%> value="<%=i%>"><%=listaDeEixos.get(i)%></option>
+                                <option <%if (eixo == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeEixos.get(i)%></option>
                                 <%}%>
                             </select>
                         </p></div>
