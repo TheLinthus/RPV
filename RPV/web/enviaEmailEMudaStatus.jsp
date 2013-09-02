@@ -61,9 +61,15 @@
                          */
                         email.setEmail(id);
                         if (item.getFieldName().equals("texto")) {
-                            //info.setTitulo(item.getString());
-                            email.setJustificativa(item.getString());
+                            if(item.getString() != ""){
+                                email.setJustificativa(item.getString());}
+                            
+                        }else{
+                            email.setJustificativa("Projeto Homologado!");
+                        
                         }
+                        
+                        
                         if (item.getFieldName().equals("homologacao")) {
                             //info.setTitulo(item.getString());
                             homologacao = item.getString();

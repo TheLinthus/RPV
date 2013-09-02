@@ -74,6 +74,14 @@
             $(document).ready(function() {
                 $("#homologar").click(function(evento) {
                     if ($("#homologar").attr("checked")) {
+                        document.formulario.texto.value = "";
+                        $("#formularioJust").css("display", "none");
+                    }
+                });
+            });
+            $(document).ready(function() {
+                $("#homologar").click(function(evento) {
+                    if ($("#homologar").attr("checked")) {
                         $("#formularioJust").css("display", "none");
                     }
                 });
@@ -81,34 +89,32 @@
 
             function validar(arquivo1, arquivo2) {
 
+
                 if (document.formulario.homologacao[0].checked == false
-                    && document.formulario.homologacao[1].checked == false) {
+                        && document.formulario.homologacao[1].checked == false) {
                     alert('Por favor, selecione Homologar ou Não Homologar o projeto.');
                     return false;
                 }
-                if (arquivo1 == "") {
-                    alert('Selecione a ata da reuniao da comissao local');
+                
+                if (document.formulario.homologacao[1].checked == true && document.formulario.texto.value == "") {
+                    alert('Por favor, Adicione uma justificativa.');
+                    return false;
+                }
+                extensao_ata1 = (arquivo1.substring(arquivo1.lastIndexOf("."))).toLowerCase();
+                if (arquivo1 == "" || extensao_ata1 != ".pdf") {
+                    alert('Selecione o PDF com a ata da reuniao da comissao local');
                     document.formulario.ata1.focus();
                     return false;
                 }
-                if (arquivo2 == "") {
-                    alert('Selecione a ata da reuniao do conselho do campus');
+                extensao_ata2 = (arquivo2.substring(arquivo2.lastIndexOf("."))).toLowerCase();
+                if (arquivo2 == "" || extensao_ata2 != ".pdf") {
+                    alert('Selecione o PDF com a ata da reuniao do conselho do campus');
                     document.formulario.ata2.focus();
                     return false;
                 }
+
             }
             
-
-
-            //                var email = document.formulario.email.value;
-            //
-            //                if (email == "") {
-            //                    alert("É necessário o preenchimento de todos os campos");
-            //                    document.formulario.email.focus();
-            //                    return false;
-            //                }
-
-
 
 
         </script>
@@ -121,7 +127,7 @@
         <div class="window" id="janela1">
             <a href="#" class="fechar">X Fechar</a> 
             <h3 id="TITULO">TESTE</h3>
-            <form enctype="multipart/form-data" action="" method=POST name="formulario" id="formulario" onsubmit="return validar(document.formulario.ata1.value, document.formulario.ata2.value)">
+            <form enctype="multipart/form-data" action="enviaEmailEMudaStatus.jsp" method=POST name="formulario" id="formulario" onsubmit="return validar(document.formulario.ata1.value, document.formulario.ata2.value)">
                 <center>
                     <table>
                         <input type="radio" name="homologacao" value="homologar" id="homologar">HOMOLOGAR
