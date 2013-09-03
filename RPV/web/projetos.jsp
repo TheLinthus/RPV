@@ -165,12 +165,6 @@
 
         <div class='centro' style="background-color: transparent; border: 0px;">
             <%
-                for (int i = 0; i < projetos.size(); i++) {
-                    if (projetos.get(i).getStatus() != 2) {
-                        projetos.remove(i);
-                        i--;
-                    }
-                }
                 if (projetos.size() > 0) {
             %>
             <div class='tabela'>
@@ -221,7 +215,11 @@
                             <a href="download.jsp?file=<%=projetos.get(i).getArquivoPDF()%>"><img src="imagens/icone_pdf.jpg"/></a>
                                 <%}%>
                         </td>
-                        <td><a href="#janela1" rel="modal" onclick="javascrip: paste(<%=projetos.get(i).getId()%>)">Avaliar</a></td>
+                        <td>
+                            <%if (projetos.get(i).getStatus() == 2 || projetos.get(i).getStatus() == 5) {%>
+                            <a href="#janela1" rel="modal" onclick="javascrip: paste(<%=projetos.get(i).getId()%>)">Avaliar</a>
+                            <%}%>
+                        </td>
                     </tr>
                     <%}%>
                 </table>

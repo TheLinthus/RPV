@@ -129,7 +129,7 @@
 
                         out.println("<tr>");
 
-                        if (status.equals("Criado") || status.equals("Alterado")) {
+                        if (status.equals("Criado")) {
                             out.println("<td><input type='checkbox' id='" + idprojetos + "'/></td>");
                         } else {
                             out.println("<td></td>");

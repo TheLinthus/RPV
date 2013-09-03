@@ -22,7 +22,7 @@ public final class acessoBanco {
     static String JBDC_DRIVER = "com.mysql.jdbc.Driver";
 	static String DATABASE_URL = "jdbc:mysql://localhost/rpv";
 	private static String usuario = "root";
-	private static String senha = "mysql";
+	private static String senha = "root";
 	private static Connection con;
     
     public acessoBanco (String dataBaseURL, String usuario, String senha){
