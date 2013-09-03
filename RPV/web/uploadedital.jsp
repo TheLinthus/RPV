@@ -109,8 +109,13 @@
             Professor pr = new Professor();
             pr.setId(Integer.parseInt((String) session.getValue("id")));
         //    info.setProfessor(pr);
-            info.salvar();
-            new banco.Arquivos().inserirArquivo(info.getId(), uploadedFile, banco.Arquivos.PROJETO);
+          //  info.salvar();
+            String dataIni;
+            String dataFim;
+            String eixo;
+            String nome;
+           
+            new banco.Arquivos().inserirEdital(info.getNomeEdital(),info.getEixoId(),info.getInicio(),info.getFim(),info.getId(), uploadedFile, banco.Arquivos.PROJETO);
             
             response.sendRedirect("menu.jsp");
         } catch (Exception e) {

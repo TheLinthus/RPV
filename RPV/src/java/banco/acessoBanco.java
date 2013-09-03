@@ -160,7 +160,7 @@ public final class acessoBanco {
             return true;
         } catch (SQLException sqle){
             
-            System.err.println("SQL Inv�lida");
+            System.err.println("SQL Inválida->"+sql);
             sqle.printStackTrace();;
             return false;
         } finally{
