@@ -60,7 +60,7 @@ public class JDBC {
     protected void connect() throws ClassNotFoundException, SQLException {
         Class.forName("org.gjt.mm.mysql.Driver");
         //(Augusto)-Alterei o banco de test para rpv e o final do ip de 3306 para 3307
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rpv", "root", "root");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rpv", "root", "mysql");
     }
 
     /**
@@ -242,7 +242,7 @@ public class JDBC {
             while (rs.next()) {
                 Edital edital = new Edital();
                 edital.setId(rs.getInt("idprojeto"));
-                edital.setNome(rs.getString("nome"));
+                edital.setNomeEdital(rs.getString("nome"));
                 edital.setInicio(rs.getDate("d_inicio"));
                 edital.setFim(rs.getDate("d_fim"));
                 //projeto.setPalavrasChaves(rs.getString("palavraschaves"));

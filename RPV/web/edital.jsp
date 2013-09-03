@@ -11,29 +11,29 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!private SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");%>
 <%
-    String tipo, nome,d_inicio, d_fim, id, mensagem;
+    String tipoEdital, nomeEdital,dataInicioEdital, dataFimEdital, idedital, mensagem;
     int eixo;
-    tipo = request.getParameter("tipo");
+    tipoEdital = request.getParameter("tipoEdital");
     eixo =  0;
-    nome = d_inicio = d_fim = mensagem = "";
-    id = "1";
+    nomeEdital = dataInicioEdital = dataFimEdital = mensagem = "";
+    idedital = "1";
     ArrayList<String> listaDeCampus = new banco.JDBC().listaDeCampus();
     ArrayList<String> listaDeEixos = new banco.JDBC().listaDeEixos();
     ArrayList<String> listaDeMembros = new banco.JDBC().listaDeMembros();
-    if (tipo != null) {
+    if (tipoEdital != null) {
 
-        if (tipo.equals("erro")) {
+        if (tipoEdital.equals("erro")) {
             mensagem = request.getParameter("mensagem");
-        } else if (tipo.equals("editar")) {
-            nome = request.getParameter("nome");
-            d_inicio = request.getParameter("d_inicio");
-            d_fim = request.getParameter("d_fim");
-            id = request.getParameter("id");
-            } else if (tipo.equals("vizualizar")) {
-            nome = request.getParameter("nome");
-            d_inicio = request.getParameter("d_inicio");
-            d_fim = request.getParameter("d_fim");
-            id = request.getParameter("id");
+        } else if (tipoEdital.equals("editar")) {
+            nomeEdital = request.getParameter("nomeEdital");
+            dataInicioEdital = request.getParameter("dataInicioEdital");
+            dataFimEdital = request.getParameter("dataFimEdital");
+            idedital = request.getParameter("idedital");
+            } else if (tipoEdital.equals("vizualizar")) {
+            nomeEdital = request.getParameter("nomeEdital");
+            dataInicioEdital = request.getParameter("dataInicioEdital");
+            dataFimEdital = request.getParameter("dataFimEdital");
+            idedital = request.getParameter("idedital");
             }
 //        try {
 //            eixo = Integer.parseInt(request.getParameter("eixo"));
@@ -63,7 +63,7 @@
 //            }
 //        }
     } else {
-        tipo = "novo";
+        tipoEdital = "novoEdital";
     }
 %>
 <!DOCTYPE html>
@@ -75,30 +75,30 @@
     </head>
     <body>
         <div class='centro'>
-            <%if (tipo.equals("salvo")) {%>
+            <%if (tipoEdital.equals("salvo")) {%>
             <div id="ok" class='message'>
                 <center>!!! Salvo com exito !!!</center>
             </div>
             <%}%>
-            <%if (tipo.equals("erro")) {%>
+            <%if (tipoEdital.equals("erro")) {%>
             <div id="erro" class='message'>
                 <center>Erro ao salvar: <%=mensagem%></center>
             </div>
             <%}%>
             <div class='labels'>
                 <p>Nome:</p>
-                <p>Data Início:</p>
-                <p>Data Fim:</p>
+                <p>Data de Abertura do Edital:</p>
+                <p>Data Limite para envio de propostas:</p>
                 <p>Eixo:</p>
-                <p>Arquivo PDF:</p>
+                <p>Edital:</p>
             </div>
             <div class='form'>
-                <form name="formulario" enctype="multipart/form-data" action="upload.jsp" method="post">
-                    <input type="number" name="id" value="<%=id%>" hidden/>
+                <form name="formulario" enctype="multipart/form-data" action="uploadedital.jsp" method="post">
+                    <input type="number" name="idedital" value="<%=idedital%>" hidden/>
                     <input type="text" name="tipo" value="novo" hidden/>
-                    <p><input type="text" name="nome" value="<%=nome%>" required/></p>
-                    <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required/></p>
-                    <p><input type="date" name="d_fim" value="<%=d_fim%>" required/></p>
+                    <p><input type="text" name="nomeEdital" value="<%=nomeEdital%>" required/></p>
+                    <p><input type="date" name="dataInicioEdital" value="<%=dataInicioEdital%>" required/></p>
+                    <p><input type="date" name="dataFimEdital" value="<%=dataFimEdital%>" required/></p>
                     <div class="styled-select">
                          <p><select size="0" name="eixo" >
                                 <%for (int i = 0;

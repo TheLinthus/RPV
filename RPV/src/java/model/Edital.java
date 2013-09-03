@@ -16,20 +16,20 @@ import java.util.Date;
 public class Edital {
     
     JDBC jdbc = new JDBC();
-    private int id;
-    private String nome;
-    private Date inicio;
-    private Date fim;
+    private int idedital;
+    private String nomeEdital;
+    private Date dataInicioEdital;
+    private Date dataFimEdital;
     private Eixo eixo;
     private int arquivoPDF;
 
     public Edital() {
-        nome="";
+        nomeEdital="";
     }
 
     public boolean salvar() {
         try {
-            id = new banco.Editais().salvarEdital(this);
+            idedital = new banco.Editais().salvarEdital(this);
             return true;
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -39,7 +39,7 @@ public class Edital {
     
     public ArrayList<Edital> buscarEdital(int id) throws SQLException {
         ArrayList<Edital> editais = new ArrayList<Edital>();
-        String sql = "SELECT * FROM rpv.projeto WHERE idedital = "+id;
+        String sql = "SELECT * FROM rpv.edital WHERE idedital = "+id;
 
         try {
             editais = jdbc.buscarEdital(sql);
@@ -60,38 +60,38 @@ public class Edital {
     }
 
     public int getId() {
-        return id;
+        return idedital;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int idedital) {
+        this.idedital = idedital;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeEdital() {
+        return nomeEdital;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeEdital(String nomeEdital) {
+        this.nomeEdital = nomeEdital;
     }
     public Date getInicio() {
-        if (inicio==null)
+        if (dataInicioEdital==null)
             return new Date();
-        return inicio;
+        return dataInicioEdital;
     }
 
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
+    public void setInicio(Date dataInicioEdital) {
+        this.dataInicioEdital = dataInicioEdital;
     }
 
     public Date getFim() {
-        if (fim==null)
+        if (dataFimEdital==null)
             return new Date();
-        return fim;
+        return dataFimEdital;
     }
 
-    public void setFim(Date fim) {
-        this.fim = fim;
+    public void setFim(Date dataFimEdital) {
+        this.dataFimEdital = dataFimEdital;
     }
     public String getEixo() {
         return eixo.toString();
@@ -112,6 +112,6 @@ public class Edital {
     public void setArquivoPDF(int arquivoPDF) {
         this.arquivoPDF = arquivoPDF;
     }
-    public void getEdital (int id){
+    public void getEdital (int idedital){
     }
 }

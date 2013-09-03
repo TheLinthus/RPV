@@ -18,12 +18,12 @@ public final class acessoBanco {
     private static Statement stm;
     private static boolean aux = false;
    // private static String JBDC_DRIVER = "org.Mysql.Driver";
-//	private static String DATABASE_URL = "jdbc:mysql://localhost:5432/login";
+//  private static String DATABASE_URL = "jdbc:mysql://localhost:5432/login";
     static String JBDC_DRIVER = "com.mysql.jdbc.Driver";
-	static String DATABASE_URL = "jdbc:mysql://localhost/rpv";
-	private static String usuario = "root";
-	private static String senha = "root";
-	private static Connection con;
+  static String DATABASE_URL = "jdbc:mysql://localhost/rpv";
+  private static String usuario = "root";
+  private static String senha = "mysql";
+  private static Connection con;
     
     public acessoBanco (String dataBaseURL, String usuario, String senha){
         
@@ -31,10 +31,10 @@ public final class acessoBanco {
         this.usuario = usuario;
         this.senha = senha;
         */
-    	
+      
         if (aux) {
-        	
-    		System.out.println("Objeto j� foi criado!");
+          
+        System.out.println("Objeto j� foi criado!");
             System.exit(0);
             
         }
@@ -73,7 +73,7 @@ public final class acessoBanco {
     public static boolean connect() {
         
         try{
-        	
+          
             Class.forName(JBDC_DRIVER).getInterfaces();
             
             con = DriverManager.getConnection(DATABASE_URL, usuario, senha);
@@ -137,9 +137,9 @@ public final class acessoBanco {
     }
     
     public static Connection conexaoRel() {
-    	connect();
-    	
-    	return con;
+      connect();
+      
+      return con;
     }
 
     /**
@@ -152,7 +152,7 @@ public final class acessoBanco {
     public static  boolean AdicionarComandoNoBanco(String sql) {
         
         connect();
-        try{
+       try{
             
             stm = con.createStatement();
             stm.executeUpdate(sql);
@@ -168,6 +168,4 @@ public final class acessoBanco {
             disconnect();
         }
     }
-
-  
 }

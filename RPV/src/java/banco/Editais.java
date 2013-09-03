@@ -47,10 +47,10 @@ public class Editais extends JDBC {
                 
                 e.setArquivoPDF(rs.getInt("arquivos_idarquivos"));
                 e.setEixo(new Eixo(rs.getInt("eixo_ideixo"), rs.getString("eixo_tipo")));
-                e.setFim(rs.getDate("d_fim"));
-                e.setId(rs.getInt("idprojeto"));
-                e.setInicio(rs.getDate("d_inicio"));
-                e.setNome(rs.getString("nome"));
+                e.setFim(rs.getDate("dataFimEdital"));
+                e.setId(rs.getInt("idedital"));
+                e.setInicio(rs.getDate("dataInicioEdital"));
+                e.setNomeEdital(rs.getString("nomeEdital"));
                 Professor prof = new Professor();
                 prof.setNome(rs.getString("professor_nome"));
                 prof.setId(rs.getInt("professor_idprofessor"));
@@ -70,16 +70,16 @@ public class Editais extends JDBC {
 
         PreparedStatement com2 = con.prepareStatement("INSERT INTO rpv2.edital("
                 + "VALUES("
-                + "nome, d_inicio,d_fim )");
+                + "nomeEdital, dataInicioEdital,dataFimEdital )");
         com2.setDate(1, new java.sql.Date(e.getInicio().getTime()));
         com2.setDate(2, new java.sql.Date(e.getFim().getTime()));
-        com2.setString(3, e.getNome());
-        com2.setString(6, e.getNome());
+        com2.setString(3, e.getNomeEdital());
+        com2.setString(6, e.getNomeEdital());
         com2.setInt(7, e.getEixoId());
         ResultSet rs = com.executeQuery("SELECT last_insert_id() AS id");
         if (rs.next()) {
             disconnect();
-            return rs.getInt("id");
+            return rs.getInt("idedital");
         } else {
             throw new SQLException("Impossivel recuperar id do Projeto inserido!");
         }
@@ -88,5 +88,3 @@ public class Editais extends JDBC {
 
 }
     
-
-
