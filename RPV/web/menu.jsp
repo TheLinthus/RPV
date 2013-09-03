@@ -37,7 +37,7 @@
                                 if (session.getValue("autorizacao").equals("professor")) {
                             %>
                     <li><a class="dock-item" href="menu.jsp"><span>Home</span><img src="images/dock/home.png" alt="home" id="home" /></a> </li>
-                    <li><a class="dock-item" onclick="carrega('visualizarProjetos.jsp')"><span>Arquivos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
+                    <li><a class="dock-item" onclick="carrega('edital.jsp')"><span>Arquivos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
                     <li><a class="dock-item" href="logof.jsp"><span>SAIR</span><img src="images/dock/logoff.png" alt="SAIR" /></a> </li>   
                             <%                                    }
                             %>

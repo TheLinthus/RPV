@@ -85,7 +85,8 @@
                 <center>Erro ao salvar: <%=mensagem%></center>
             </div>
             <%}%>
-            <div class='labels'>
+            
+                <div class='labels'>
                 <p>Nome:</p>
                 <p>Data de Abertura do Edital:</p>
                 <p>Data Limite para envio de propostas:</p>
