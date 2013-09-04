@@ -97,7 +97,7 @@
                 <form name="formulario" enctype="multipart/form-data" action="uploadedital.jsp" method="post">
                     <input type="number" name="idedital" value="<%=idedital%>" hidden/>
                     <input type="text" name="tipo" value="novo" hidden/>
-                    <p><input type="text" name="nomeEdital" value="<%=nomeEdital%>" required/></p>
+                    <p><input type="text" name="nomeEdital" value="<%=nomeEdital%>" required autofocus/></p>
                     <p><input type="date" name="dataInicioEdital" value="<%=dataInicioEdital%>" required/></p>
                     <p><input type="date" name="dataFimEdital" value="<%=dataFimEdital%>" required/></p>
                     <div class="styled-select">

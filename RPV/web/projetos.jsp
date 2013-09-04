@@ -163,7 +163,7 @@
         </div>
         <!--<input type="button" id="enviarEmail" value="ENVIAR E-MAIL"/>-->
 
-        <div class='centro' style="background-color: transparent; border: 0px;">
+        <div id="meio" style='min-width: 700px; max-width: 900px; margin: auto auto;'>
             <%
                 if (projetos.size() > 0) {
             %>

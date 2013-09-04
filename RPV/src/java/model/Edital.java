@@ -51,9 +51,9 @@ public class Edital {
         return editais;
     }
 
-    public static ArrayList<Edital> listarEditais(Coordenador c) {
+    public static ArrayList<Edital> listarEditais() {
         try {
-            return new banco.Editais().getEditais(c);
+            return new banco.Editais().getEditais();
         } catch (Exception ex) {
             throw ex;
         }

@@ -11,7 +11,7 @@
 <%!private SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");%>
 <%
     boolean possui_id = false;
-    ArrayList<model.Projeto> projetos   ;
+    ArrayList<model.Edital> editais;
     model.Coordenador c = new model.Coordenador();
     int id = 1;
 //    try {
@@ -21,7 +21,7 @@
 //        response.sendRedirect("index.html");
 //    }
     c.setId(id);
-    projetos = model.Projeto.listarProjetos(c);
+    editais = model.Edital.listarEditais();
 %>
 <!DOCTYPE html>
 <html>
@@ -172,14 +172,15 @@
                         <td id='nome'>NOME</td>
                         <td id='inicio'>DATA INÍCIO</td>
                         <td id='fim'>DATA FIM</td>
+                        <td id='eixo'>EIXO</td>
                         <td id='arquivo'>ARQUIVO</td>
                     </tr>
                     <%for (int i = 0; i < editais.size(); i++) {%>
                     <tr class='linhatabela' id="linha <%=editais.get(i).getId()%>" onmouseover="hover(editais.get(i).getId())">
-                        <td><input disabled type="text" name="id" id='id' value="<%=editais.get(i).getId()%>"></td>
-                        <td><input disabled type="text" name="nome" id='nome' value="<%=editais.get(i).getNome()%>"></td>
+                        <td><input disabled type="text" name="nome" id='nome' value="<%=editais.get(i).getNomeEdital()%>"></td>
                         <td><input disabled type="text" name="d_inicio" id='inicio' value="<%=formater.format(editais.get(i).getInicio())%>"></td>
                         <td><input disabled type="text" name="d_fim" id='fim' value="<%=formater.format(editais.get(i).getFim())%>"></td>
+                        <td><input disabled type="text" name="eixo" id='eixo' value="<%=editais.get(i).getEixo()%>"></td>
                         <td><img src="imagens/icone_pdf.jpg"/></td>
                     </tr>
                     <%}%>

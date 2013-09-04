@@ -17,7 +17,7 @@ import model.Projeto;
  */
 public class Editais extends JDBC {
 
-    public ArrayList<model.Edital> getEditais(model.Coordenador c) {
+    public ArrayList<model.Edital> getEditais() {
         
         ArrayList<model.Edital> list = new ArrayList<model.Edital>();
         try {
@@ -25,35 +25,35 @@ public class Editais extends JDBC {
 
             Statement com = con.createStatement();
 
+//            ResultSet rs = com.executeQuery(
+//                    "SELECT a.*, " //Selecionar Projeto
+//                    + "c.tipo AS eixo_tipo, " //seu eixo (tipo)
+//                    + "d.nome AS campus_nome, " //campus (nome)
+//                    + "e.nome AS professor_nome " //professor (nome)
+//                    + "FROM rpv.projeto a " //da tabela projeto
+//                    + "INNER JOIN rpv.coordenador b " //em que o coordenador (somente se)
+//                    + "ON a.eixo_ideixo = b.eixo_ideixo " //pertence do mesmo eixo
+//                    + "AND a.campus_idcampus = b.campus_idcampus " //e campus.
+//                    + "LEFT OUTER JOIN rpv.eixo c " //Pega o tipo de eixo (se existe)
+//                    + "ON a.eixo_ideixo = c.ideixo " //pelo id do eixo.
+//                    + "LEFT OUTER JOIN rpv.campus d " //Pega o nome do campus (se existe)
+//                    + "ON a.campus_idcampus = d.idcampus " //pelo id do campus.
+//                    + "LEFT OUTER JOIN rpv.professor e " //Pega o nome do professor (se existe)
+//                    + "ON a.professor_idprofessor = e.idprofessor " //pelo id do professor.
+//                    + "WHERE b.professor_idprofessor = " + c.getId());//Onde o Coordenador responsavel é o de id 'x'
             ResultSet rs = com.executeQuery(
-                    "SELECT a.*, " //Selecionar Projeto
-                    + "c.tipo AS eixo_tipo, " //seu eixo (tipo)
-                    + "d.nome AS campus_nome, " //campus (nome)
-                    + "e.nome AS professor_nome " //professor (nome)
-                    + "FROM rpv.projeto a " //da tabela projeto
-                    + "INNER JOIN rpv.coordenador b " //em que o coordenador (somente se)
-                    + "ON a.eixo_ideixo = b.eixo_ideixo " //pertence do mesmo eixo
-                    + "AND a.campus_idcampus = b.campus_idcampus " //e campus.
-                    + "LEFT OUTER JOIN rpv.eixo c " //Pega o tipo de eixo (se existe)
-                    + "ON a.eixo_ideixo = c.ideixo " //pelo id do eixo.
-                    + "LEFT OUTER JOIN rpv.campus d " //Pega o nome do campus (se existe)
-                    + "ON a.campus_idcampus = d.idcampus " //pelo id do campus.
-                    + "LEFT OUTER JOIN rpv.professor e " //Pega o nome do professor (se existe)
-                    + "ON a.professor_idprofessor = e.idprofessor " //pelo id do professor.
-                    + "WHERE b.professor_idprofessor = " + c.getId());//Onde o Coordenador responsavel é o de id 'x'
+                    "SELECT a.*, e.tipo AS eixo_tipo FROM rpv.edital a LEFT OUTER JOIN rpv.eixo e ON a.eixo_ideixo = e.ideixo");
 
             while (rs.next()) {
                 model.Edital e = new model.Edital();              //Cria um projeto para preencher com os dados requisitados
                 
                 e.setArquivoPDF(rs.getInt("arquivos_idarquivos"));
+                e.setEixo(new Eixo(1, "Ensino"));
                 e.setEixo(new Eixo(rs.getInt("eixo_ideixo"), rs.getString("eixo_tipo")));
                 e.setFim(rs.getDate("dataFimEdital"));
                 e.setId(rs.getInt("idedital"));
                 e.setInicio(rs.getDate("dataInicioEdital"));
                 e.setNomeEdital(rs.getString("nomeEdital"));
-                Professor prof = new Professor();
-                prof.setNome(rs.getString("professor_nome"));
-                prof.setId(rs.getInt("professor_idprofessor"));
                 list.add(e);                                        //Adiciona na lista o projeto
             }
 

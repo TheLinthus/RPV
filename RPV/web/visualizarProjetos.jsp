@@ -58,7 +58,7 @@
         </div>   
     </body>
     <body>
-        <div    id="meio" style='min-width: 700px; max-width: 900px; margin: auto auto;'>
+        <div id="meio" style='min-width: 700px; max-width: 900px; margin: auto auto;'>
             <%
                 String reavaliar;
                 if ((reavaliar = request.getParameter("ids")) != null) {

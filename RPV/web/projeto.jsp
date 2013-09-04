@@ -49,6 +49,8 @@
         }
     } else {
         tipo = "novo";
+        campus = new banco.Projetos().getCampus(Integer.parseInt((String) session.getAttribute("id")));
+        campus--;
     }
 %>
 <!DOCTYPE html>
@@ -88,7 +90,7 @@
                     <input type="number" name="id" value="<%=id%>" hidden/>
                     <input type="text" name="tipo" value="novo" hidden/>
                     <select name="equipe" multiple hidden></select>
-                    <p><input type="text" name="titulo" value="<%=titulo%>" required <%=view ? "disabled" : ""%>/></p>
+                    <p><input type="text" name="titulo" value="<%=titulo%>" required <%=view ? "disabled" : ""%> autofocus/></p>
                     <p><input type="text" name="nome" value="<%=nome%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="date" name="d_fim" value="<%=d_fim%>" required <%=view ? "disabled" : ""%>/></p>
@@ -96,9 +98,11 @@
                     <div class="styled-select"><p><select size="1" name="campus" <%=view ? "disabled" : ""%>>
                                 <%for (int i = 0;
                                             i < listaDeCampus.size();
-                                            i++) {%>
+                                            i++) {
+                                        if ((tipo.equals("novo") || tipo.equals("editar")) && campus == i) {%>
                                 <option <%if (campus == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeCampus.get(i)%></option>
-                                <%}%>
+                                <%}
+                                    }%>
                             </select>
                         </p>
                         <p><select size="1" name="eixo" <%=view ? "disabled" : ""%>>
@@ -117,6 +121,9 @@
                     <p><a href="download.jsp?file=<%=idarquivo%>">Download Arquivo</a></p>
                     <%}%>
                 </form>
+            </div>
+            <div style="position: relative; float: right;">
+                <a href="menu.jsp">X Fechar</a>
             </div>
         </div>
     </body>
