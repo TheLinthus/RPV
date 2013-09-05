@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Campus;
 import model.Edital;
 import model.Eixo;
@@ -263,6 +265,27 @@ public class JDBC {
 
     }
 
+       
+     /*    public void alterarProjeto(String sql) {
+        try {
+            connect();
+            Statement com = con.createStatement();
+            com.executeUpdate(sql);
+            disconnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+        }
+    }*/
+         public void alterarProjeto() {
+        try {
+            connect();
+            Statement com = con.createStatement();
+            com.executeUpdate("UPDATE rpv.projeto SET nome = nome WHERE idprojeto = 3");
+            disconnect();
+        } catch (Exception ex) {
+            Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+       
+    }
 //    ESTE É O TEMPLATE DO SEU MÉTODO, FAÇA USUFRUTO DELE COM SABEDORIA
 //    substitua os '<' '>' pelo dado correspondente
 //    public ArrayList<<Objeto>> obter<AlgumaCoisa>(<parametro>) throws ClassNotFoundException, SQLException {

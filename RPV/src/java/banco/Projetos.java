@@ -18,7 +18,7 @@ import model.Projeto;
  * @author Caio Alexandre
  */
 public class Projetos extends JDBC {
-    
+
     public String professorVinculado(int idProjeto) {
         String nome = "";
         try {
@@ -154,4 +154,6 @@ public class Projetos extends JDBC {
             disconnect();
         }
     }
+
+  
 }

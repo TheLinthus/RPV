@@ -54,10 +54,15 @@ public class Projeto {
         }
     }
 
+    
     public void alterarhomologacao(int id, int homologar) {
         jdbc.homologar("UPDATE projeto SET status=" + homologar + " WHERE idprojeto=" + id);
     }
-
+   /* public void alterarProjeto(int id, String datainicio, String datafim, String titulo, String palavraschave, String descricao, int eixo, int campus, int equipe) {
+        jdbc.alterarProjeto("UPDATE projeto SET d_inicio=" + datainicio + ",d_fim="+datafim+",titulo="+titulo+",palavraschave"+palavraschave+",nome="+descricao+","
+                + "eixo_ideixo"+eixo+",campus="+campus+",equipe="+equipe+", WHERE idprojeto=" + id);
+    }
+*/
     public void atualizar() {
         try {
             Projeto temp = buscarProjeto(id).get(0);
