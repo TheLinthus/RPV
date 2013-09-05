@@ -25,7 +25,7 @@
                     if (session.getValue("autorizacao").equals("coordenador")) {
                     %>
                     <li><a class="dock-item" href="menu.jsp"><span>Home</span><img src="images/dock/home.png" alt="home" id="home" /></a> </li>
-                    <li><a class="dock-item" onclick="carrega('projetos.jsp')"><span>Arquivos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
+                    <li><a class="dock-item" onclick="carrega('projetos.jsp')"><span>Projetos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
                     <!--<li><a class="dock-item" onclick="carrega('projetos.jsp')"><span>Proejtos</span><img src="images/dock/email.png" alt="Projetos" /></a> </li>
                     <li><a class="dock-item" href="projetos.jsp"><span>Arquivos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>-->
                     <!--<li><a class="dock-item" href="#"><span>Projetos</span><img src="images/dock/link.png" alt="links" /></a> </li>
@@ -36,7 +36,7 @@
 
                                 if (session.getValue("autorizacao").equals("professor")) {
                             %>
-                    <li><a class="dock-item" href="menu.jsp"><span>Projeto</span><img src="images/dock/home.png" alt="portfolio" /></a> </li>
+                    <li><a class="dock-item" href="menu.jsp"><span>Meus Projetos</span><img src="images/dock/home.png" alt="portfolio" /></a> </li>
                     <li><a class="dock-item" onclick="carrega('visualizareditais.jsp')"><span>Edital</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
                     <li><a class="dock-item" href="logof.jsp"><span>SAIR</span><img src="images/dock/logoff.png" alt="SAIR" /></a> </li>   
                             <%                                    }

@@ -177,6 +177,7 @@
                         <td id='status'>Status</td>
                         <td id='arquivo'>Arquivo</td>
                         <td id='campo'></td>
+                        <td id='campo'></td>
                     </tr>
                     <%for (int i = 0; i < projetos.size(); i++) {%>
                     <tr class='linhatabela' id="linha <%=projetos.get(i).getId()%>" onmouseover="hover(projetos.get(i).getId());">
@@ -220,6 +221,7 @@
                             <a href="#janela1" rel="modal" onclick="javascrip: paste(<%=projetos.get(i).getId()%>)">Avaliar</a>
                             <%}%>
                         </td>
+                        <td style="padding: 2px;"><a href="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=projetos.get(i).getId()%>')">Visualizar Projeto</a></td>
                     </tr>
                     <%}%>
                 </table>
