@@ -5,6 +5,7 @@
 package model;
 
 import banco.JDBC;
+import banco.Projetos;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,7 +55,10 @@ public class Projeto {
         }
     }
 
-    
+    public void alterarProjeto(int id, String nome,String d_inicio,String d_fim,String titulo,String palavraschave,int eixo_ideixo,int campus_idcampus){
+        Projetos projeto = new Projetos();
+        projeto.alterarProjeto(id, nome, d_inicio, d_fim, titulo, palavraschave, eixo_ideixo, campus_idcampus);
+    }
     public void alterarhomologacao(int id, int homologar) {
         jdbc.homologar("UPDATE projeto SET status=" + homologar + " WHERE idprojeto=" + id);
     }

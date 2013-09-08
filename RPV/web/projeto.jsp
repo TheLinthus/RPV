@@ -51,6 +51,42 @@
         tipo = "novo";
     }
 %>
+<Script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#botaoalterar").click(function(evento) {
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+
+                inputs[i].disabled = false;
+
+            }
+        });
+    });
+            
+            $(document).ready(function() {
+        $("#botaoalterar").click(function(evento) {
+            var inputs = document.getElementsByTagName("select");
+            for (var i = 0; i < inputs.length; i++) {
+
+                inputs[i].disabled = false;
+
+                $("#botaoSalvarAlteracao").css("display", "block");
+
+            }
+        });
+    });
+    $(document).ready(function() {
+        $("#botaoSalvarAlteracao").css("display", "none");
+
+    });
+    $(document).ready(function() {
+        $("#botaoSalvarAlteracao").click(function(evento) {
+
+        });
+    });
+</script>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -93,7 +129,7 @@
                     <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="date" name="d_fim" value="<%=d_fim%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="button" name="equipebutton" value="Equipe" disabled <%=view ? "disabled" : ""%>/></p>
-                    <div class="styled-select"><p><select size="1" name="campus" <%=view ? "disabled" : ""%>>
+                    <div class="styled-select"><p><select size="1" name="campus"  <%=view ? "disabled" : ""%>>
                                 <%for (int i = 0;
                                             i < listaDeCampus.size();
                                             i++) {%>
@@ -101,7 +137,7 @@
                                 <%}%>
                             </select>
                         </p>
-                        <p><select size="1" name="eixo" <%=view ? "disabled" : ""%>>
+                        <p><select size="1" name="eixo"  <%=view ? "disabled" : ""%>>
                                 <%for (int i = 0;
                                             i < listaDeEixos.size();
                                             i++) {%>
@@ -116,7 +152,12 @@
                     <%} else {%>
                     <p><a href="download.jsp?file=<%=idarquivo%>">Download Arquivo</a></p>
                     <%}%>
+
                 </form>
+             
+                <a id="botaoalterar"> Habilitar Campos </a>
+
+                <a id="botaoSalvarAlteracao">Salvar Alteração</a> 
             </div>
         </div>
     </body>

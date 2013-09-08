@@ -275,17 +275,7 @@ public class JDBC {
         } catch (ClassNotFoundException | SQLException ex) {
         }
     }*/
-         public void alterarProjeto() {
-        try {
-            connect();
-            Statement com = con.createStatement();
-            com.executeUpdate("UPDATE rpv.projeto SET nome = nome WHERE idprojeto = 3");
-            disconnect();
-        } catch (Exception ex) {
-            Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-       
-    }
+        
 //    ESTE É O TEMPLATE DO SEU MÉTODO, FAÇA USUFRUTO DELE COM SABEDORIA
 //    substitua os '<' '>' pelo dado correspondente
 //    public ArrayList<<Objeto>> obter<AlgumaCoisa>(<parametro>) throws ClassNotFoundException, SQLException {
