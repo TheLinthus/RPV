@@ -244,7 +244,8 @@ public class JDBC {
             while (rs.next()) {
                 Edital edital = new Edital();
                 edital.setId(rs.getInt("idprojeto"));
-                edital.setNome(rs.getString("nome"));
+                //edital.setNome(rs.getString("nome"));
+                edital.setNomeEdital(rs.getString("nome"));
                 edital.setInicio(rs.getDate("d_inicio"));
                 edital.setFim(rs.getDate("d_fim"));
                 //projeto.setPalavrasChaves(rs.getString("palavraschaves"));
