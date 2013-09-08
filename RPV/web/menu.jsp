@@ -9,11 +9,11 @@
     <script type="text/javascript" src="js/fisheye-iutil.min.js"></script>
     <script type="text/javascript" src="js/dock-example1.js"></script>
 </head>
-<body onload="<%=(request.getParameter("tipo") != null) ? "go()" : ""%>">
+<body onload="go()">
     <%//Verifica se está logado
         if (session.getValue("loginUsuario") != null || session.getValue("senhaUsuario") != null) {
 //out.println("Você está logado com sucesso no sistema, por isso consegue ver está pagina. Seu login é: " + session.getValue("loginUsuario") + " e sua senha: " + session.getValue("senhaUsuario") + ". Clique <a href='logof.jsp'>aqui</a> para sair do sistema");
-%>
+    %>
 
     <div class="wrap background">
         <!-- end div #header -->
@@ -25,7 +25,7 @@
                     if (session.getValue("autorizacao").equals("coordenador")) {
                     %>
                     <li><a class="dock-item" href="menu.jsp"><span>Home</span><img src="images/dock/home.png" alt="home" id="home" /></a> </li>
-                    <li><a class="dock-item" onclick="carrega('projetos.jsp')"><span>Arquivos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
+                    <li><a class="dock-item" onclick="carrega('projetos.jsp')"><span>Projetos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
                     <!--<li><a class="dock-item" onclick="carrega('projetos.jsp')"><span>Proejtos</span><img src="images/dock/email.png" alt="Projetos" /></a> </li>
                     <li><a class="dock-item" href="projetos.jsp"><span>Arquivos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>-->
                     <!--<li><a class="dock-item" href="#"><span>Projetos</span><img src="images/dock/link.png" alt="links" /></a> </li>
@@ -36,8 +36,8 @@
 
                                 if (session.getValue("autorizacao").equals("professor")) {
                             %>
-                    <li><a class="dock-item" href="menu.jsp"><span>Home</span><img src="images/dock/home.png" alt="home" id="home" /></a> </li>
-                    <li><a class="dock-item" onclick="carrega('visualizarProjetos.jsp')"><span>Arquivos</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
+                    <li><a class="dock-item" href="menu.jsp"><span>Meus Projetos</span><img src="images/dock/home.png" alt="portfolio" /></a> </li>
+                    <li><a class="dock-item" onclick="carrega('visualizareditais.jsp')"><span>Edital</span><img src="images/dock/portfolio.png" alt="portfolio" /></a> </li>
                     <li><a class="dock-item" href="logof.jsp"><span>SAIR</span><img src="images/dock/logoff.png" alt="SAIR" /></a> </li>   
                             <%                                    }
                             %>
@@ -51,13 +51,16 @@
     <div id="corpo" style=" margin-top: 50px; min-height: 80px;">
 
     </div>
-    
+
     <%
         } else {
             out.println("Você não está logado no sistema. Clique <a href='index.html'>aqui</a> para logar-se");
         }
     %>
     <script>
+        function go() {
+            carrega('<%=session.getValue("autorizacao").equals("coordenador") ? "projetos.jsp" : "visualizarProjetos.jsp"%>');
+        }
     
         function carrega(pagina) {
             $("#corpo").html( '<center><img src="imagens/loading.gif" /></center>' );   
@@ -111,15 +114,3 @@
             }
         }
     </script>
-
-    <%
-        if (request.getParameter("tipo") != null) {
-    %>
-    <script type="text/javascript">
-        function go() {
-            carrega('<%=session.getValue("autorizacao").equals("coordenador") ? "projetos.jsp" : "visualizarProjetos.jsp"%>');
-        }
-    </script>
-    <%        }
-    %>
-

@@ -25,7 +25,7 @@
         <title>Projetos!</title>
         <script type="text/javascript">
             function ver(id) {
-                window.location.assign("projeto.jsp?tipo=visualizar&id="+id);
+                window.location.assign("projeto.jsp?tipo=visualizar&id=" + id);
             }
             function enviar() {
                 try {
@@ -33,10 +33,10 @@
                     var numerodelinhas = tabela.rows.length;
                     var reavaliar = new Array();
                     var count = 0;
-                    for(var i=1; i<numerodelinhas; i++) {
+                    for (var i = 1; i < numerodelinhas; i++) {
                         var linha = tabela.rows[i];
                         var chkbox = linha.cells[0].childNodes[0];
-                        if(null != chkbox && true == chkbox.checked) {
+                        if (null != chkbox && true == chkbox.checked) {
                             linha.cells[0].innerHTML = "";
                             reavaliar[count] = linha.cells[1].innerHTML;
                             count++;
@@ -44,9 +44,9 @@
                         }
                     }
                     if (reavaliar.length > 0) {
-                        carrega("visualizarProjetos.jsp?ids="+reavaliar);
+                        carrega("visualizarProjetos.jsp?ids=" + reavaliar);
                     }
-                }catch(e) {
+                } catch (e) {
                     alert(e);
                 }
             }
@@ -58,7 +58,7 @@
         </div>   
     </body>
     <body>
-        <div    id="meio" style='min-width: 700px; max-width: 900px; margin: auto auto;'>
+        <div id="meio" style='min-width: 700px; max-width: 900px; margin: auto auto;'>
             <%
                 String reavaliar;
                 if ((reavaliar = request.getParameter("ids")) != null) {
@@ -84,11 +84,11 @@
                     //CRIA ESTRUTURA DA TABELA
                     out.println("<table id='tabela' class='tabela', border='1px'>");
                     out.println("<td id='id'></td>");
-                    out.println("<td>ID Projeto</td>");
+                    //out.println("<td>ID Projeto</td>");
                     out.println("<td>Titulo</td>");
                     out.println("<td>Data Inicio</td>");
                     out.println("<td>Data Fim</td>");
-                    out.println("<td>Campus</td>");
+                    // out.println("<td>Campus</td>");
                     out.println("<td>Eixo</td>");
                     //             out.println("<td>ID Professor</td>");
                     out.println("<td>Status</td>");
@@ -100,7 +100,7 @@
                         String titulo = rs.getString("titulo");
                         String inicio = rs.getString("d_inicio");
                         String fim = rs.getString("d_fim");
-                        String campus = rs.getString("campus_nome");
+                        // String campus = rs.getString("campus_nome");
                         String eixo = rs.getString("eixo_tipo");
                         String status = "";
 
@@ -129,14 +129,13 @@
 
                         out.println("<tr>");
 
-                        if (status.equals("Criado") || status.equals("Alterado")) {
+                        if (status.equals("Criado")) {
                             out.println("<td><input type='checkbox' id='" + idprojetos + "'/></td>");
                         } else {
                             out.println("<td></td>");
                         }
             %>
 
-            <td><%= idprojetos%></td>
 
             <td><%= titulo%></td>
 
@@ -144,28 +143,28 @@
 
             <td><%= fim%></td>
 
-            <td><%= campus%></td>
 
             <td><%= eixo%></td>
 
             <td><%= status%></td>
 
-            <td style="padding: 2px;"><input type="button" value="Visualizar Projeto" onclick="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=idprojetos%>')" style="width: 80%; height: 100%"></td>
+            <td style="padding: 2px;"><a href="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=idprojetos%>')">Visualizar Projeto</a></td>
         </tr>
         <%
-                }
-
-                out.println("</table>");
-                out.println("<input type='button' onclick='javascript: enviar()' value='Enviar projetos para avaliação' style='margin-top: 15px;'/>");
-            } else {
-
-                out.print("<center><h1>Não há projetos inseridos ainda!</h1></center>");
             }
+        %>
+        </table>
+        <a href='javascript: enviar()' style="position: absolute; margin-top: 30px;"> Enviar projeto selecionado para avaliação </a>
+        <%
+        } else {
+        %>
+        <center><h1>Não há projetos inseridos ainda!</h1></center>
+        <%            }
 
             rs.close();
         %>
-        <a href="javascript: carrega('projeto.jsp');">Novo Projeto</a>
-    </div>
+        <a href="javascript: carrega('projeto.jsp');" style="position: absolute; margin-top: 12px;">Novo Projeto</a>
+</div>
 
 </body>
 </html>

@@ -8,6 +8,9 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class Arquivos extends JDBC {
 
@@ -81,6 +84,7 @@ public class Arquivos extends JDBC {
 
                 com.execute();
 
+                
                 if (id == 0) {
                     com.execute("UPDATE rpv.projeto SET "+coluna+" = last_insert_id() WHERE idprojeto = " + idProjeto);
                 }
@@ -93,6 +97,43 @@ public class Arquivos extends JDBC {
             ex.printStackTrace();
         } finally {
             disconnect();
+        }
+        return false;
+    }
+    public boolean inserirEdital(String nome, int eixo,Date inicio,Date fim,int idEdital, File f, int tipo) throws IOException {
+        String name = f.getName();
+        byte[] b = getBytes(f);
+        try {
+            SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+           
+            acessoBanco banco = new acessoBanco();
+            
+            PreparedStatement com;
+            
+           banco.AdicionarComandoNoBanco("INSERT INTO rpv.arquivos(nome, dados) VALUES ('"+name+"', '"+getBytes(f)+"')");
+            
+           banco.AdicionarComandoNoBanco("insert into rpv.edital(nomeEdital,dataInicioEdital,dataFimEdital,eixo_ideixo,arquivos_idarquivos) "
+                   +                                    "values ('"+nome+"','"+formater.format(inicio)+"','"+formater.format(fim)+"',"+eixo+",(select max(idarquivos) from arquivos))");
+                   
+
+               // com.setString(1, f.getName());
+               // com.setBytes(2, getBytes(f));
+
+                
+
+              disconnect();
+            return true;  
+                
+            
+
+            
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            
+            
+        } finally {
+            
         }
         return false;
     }

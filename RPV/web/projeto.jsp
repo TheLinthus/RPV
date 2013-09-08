@@ -49,6 +49,8 @@
         }
     } else {
         tipo = "novo";
+        campus = new banco.Projetos().getCampus(Integer.parseInt((String) session.getAttribute("id")));
+        campus--;
     }
 %>
 <Script type="text/javascript">
@@ -98,11 +100,9 @@
             <h1>Envio de Projeto!</h1>
         </div> 
         <div class='centro'>
-            <%if (tipo.equals("salvo")) {%>
-            <script type="text/javascript">
-                alert("Salvo com exito!");
-            </script>
-            <%}%>
+            <div style="padding-bottom: 15px;">
+                <a href="menu.jsp">X Fechar</a>
+            </div>
             <%if (tipo.equals("erro")) {%>
             <div id="erro" class='message'>
                 <center>Erro ao salvar: <%=mensagem%></center>

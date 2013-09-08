@@ -18,12 +18,27 @@ import model.Projeto;
  * @author Caio Alexandre
  */
 public class Projetos extends JDBC {
+    
+    public int getCampus(int userId) {
+        int ret = 0;
+        try {
+            connect();
+            ResultSet rs = con.createStatement().executeQuery("SELECT campus FROM professor WHERE idprofessor = "+userId);
 
+            if (rs.next()) {
+                ret = rs.getInt("campus");
+            }
+            disconnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+        }
+        return ret;
+    }
+    
     public String professorVinculado(int idProjeto) {
         String nome = "";
         try {
             connect();
-            ResultSet rs = con.createStatement().executeQuery("SELECT nome FROM projeto,professor WHERE idprojeto = " + idProjeto + " and projeto.professor_idprofessor=professor.idprofessor;");
+            ResultSet rs = con.createStatement().executeQuery("SELECT b.nome FROM rpv.projeto AS a INNER JOIN rpv.professor AS b ON a.professor_idprofessor = b.idprofessor WHERE a.idprojeto = " + idProjeto);
 
             if (rs.next()) {
                 nome = rs.getString("nome");

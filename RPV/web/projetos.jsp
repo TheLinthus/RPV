@@ -169,14 +169,8 @@
         </div>
         <!--<input type="button" id="enviarEmail" value="ENVIAR E-MAIL"/>-->
 
-        <div class='centro' style="background-color: transparent; border: 0px;">
+        <div id="meio" style='min-width: 700px; max-width: 900px; margin: auto auto;'>
             <%
-                for (int i = 0; i < projetos.size(); i++) {
-                    if (projetos.get(i).getStatus() != 2) {
-                        projetos.remove(i);
-                        i--;
-                    }
-                }
                 if (projetos.size() > 0) {
             %>
             <div class='tabela'>
@@ -188,6 +182,7 @@
                         <td id='fim'>Data fim</td>
                         <td id='status'>Status</td>
                         <td id='arquivo'>Arquivo</td>
+                        <td id='campo'></td>
                         <td id='campo'></td>
                     </tr>
                     <%for (int i = 0; i < projetos.size(); i++) {%>
@@ -227,7 +222,12 @@
                             <a href="download.jsp?file=<%=projetos.get(i).getArquivoPDF()%>"><img src="imagens/icone_pdf.jpg"/></a>
                                 <%}%>
                         </td>
-                        <td><a href="#janela1" rel="modal" onclick="javascrip: paste(<%=projetos.get(i).getId()%>)">Avaliar</a></td>
+                        <td>
+                            <%if (projetos.get(i).getStatus() == 2 || projetos.get(i).getStatus() == 5) {%>
+                            <a href="#janela1" rel="modal" onclick="javascrip: paste(<%=projetos.get(i).getId()%>)">Avaliar</a>
+                            <%}%>
+                        </td>
+                        <td style="padding: 2px;"><a href="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=projetos.get(i).getId()%>')">Visualizar Projeto</a></td>
                     </tr>
                     <%}%>
                 </table>
