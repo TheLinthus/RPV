@@ -23,7 +23,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>Projetos!</title>
+
+        <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+
         <script type="text/javascript">
+            $(function() {
+                $("table").tablesorter();
+            });
+
             function ver(id) {
                 window.location.assign("projeto.jsp?tipo=visualizar&id=" + id);
             }
@@ -51,13 +59,12 @@
                 }
             }
         </script>
+
     </head>
     <body>
         <div id='contenthead' style="height: 30px; text-align: center;">
             <h1>Aqui estão os projetos de sua autoria</h1>
-        </div>   
-    </body>
-    <body>
+        </div>
         <div id="meio" style='min-width: 700px; max-width: 900px; margin: auto auto;'>
             <%
                 String reavaliar;
@@ -81,90 +88,90 @@
                 if (rs.next()) {
                     rs.previous();
 
-                    //CRIA ESTRUTURA DA TABELA
-                    out.println("<table id='tabela' class='tabela', border='1px'>");
-                    out.println("<td id='id'></td>");
-                    //out.println("<td>ID Projeto</td>");
-                    out.println("<td>Titulo</td>");
-                    out.println("<td>Data Inicio</td>");
-                    out.println("<td>Data Fim</td>");
-                    // out.println("<td>Campus</td>");
-                    out.println("<td>Eixo</td>");
-                    //             out.println("<td>ID Professor</td>");
-                    out.println("<td>Status</td>");
-                    out.println("<td></td>");
-
-                    //ADICIONA LINHAS A TABELA
-                    while (rs.next()) {
-                        String idprojetos = rs.getString("idprojeto");
-                        String titulo = rs.getString("titulo");
-                        String inicio = rs.getString("d_inicio");
-                        String fim = rs.getString("d_fim");
-                        // String campus = rs.getString("campus_nome");
-                        String eixo = rs.getString("eixo_tipo");
-                        String status = "";
-
-                        switch (rs.getInt("status")) {
-                            case 1:
-                                status = "Criado";
-                                break;
-                            case 2:
-                                status = "Registrado";
-                                break;
-                            case 3:
-                                status = "Homologado";
-                                break;
-                            case 4:
-                                status = "Não Homologado";
-                                break;
-                            case 5:
-                                status = "Alterado";
-                                break;
-                            case 6:
-                                status = "Terminado";
-                                break;
-                        }
-
-
-
-                        out.println("<tr>");
-
-                        if (status.equals("Criado")) {
-                            out.println("<td><input type='checkbox' id='" + idprojetos + "'/></td>");
-                        } else {
-                            out.println("<td></td>");
-                        }
             %>
+            <table id='tabela' class='tablesorter'>
+                <thead>
+                    <tr>
+                        <th id='id' class='header'></td>
+                        <th class='header'>Titulo</td>
+                        <th class='header'>Data Inicio</td>
+                        <th class='header'>Data Fim</td>
+                        <th class='header'>Eixo</td>
+                        <th class='header'>Status</td>
+                        <th class='header'></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <%
+                            //ADICIONA LINHAS A TABELA
+                            while (rs.next()) {
+                                String idprojetos = rs.getString("idprojeto");
+                                String titulo = rs.getString("titulo");
+                                String inicio = rs.getString("d_inicio");
+                                String fim = rs.getString("d_fim");
+                                // String campus = rs.getString("campus_nome");
+                                String eixo = rs.getString("eixo_tipo");
+                                String status = "";
+
+                                switch (rs.getInt("status")) {
+                                    case 1:
+                                        status = "Criado";
+                                        break;
+                                    case 2:
+                                        status = "Registrado";
+                                        break;
+                                    case 3:
+                                        status = "Homologado";
+                                        break;
+                                    case 4:
+                                        status = "Não Homologado";
+                                        break;
+                                    case 5:
+                                        status = "Alterado";
+                                        break;
+                                    case 6:
+                                        status = "Terminado";
+                                        break;
+                                }
+
+                                if (status.equals("Criado")) {
+                                    out.println("<td><input type='checkbox' id='" + idprojetos + "'/></td>");
+                                } else {
+                                    out.println("<td></td>");
+                                }
+                        %>
 
 
-            <td><%= titulo%></td>
+                        <td><%= titulo%></td>
 
-            <td><%= inicio%></td>
+                        <td><%= inicio%></td>
 
-            <td><%= fim%></td>
+                        <td><%= fim%></td>
 
 
-            <td><%= eixo%></td>
+                        <td><%= eixo%></td>
 
-            <td><%= status%></td>
+                        <td><%= status%></td>
 
-            <td style="padding: 2px;"><a href="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=idprojetos%>')">Visualizar Projeto</a></td>
-        </tr>
-        <%
-            }
-        %>
-        </table>
-        <a href='javascript: enviar()' style="position: absolute; margin-top: 30px;"> Enviar projeto selecionado para avaliação </a>
-        <%
-        } else {
-        %>
-        <center><h1>Não há projetos inseridos ainda!</h1></center>
-        <%            }
+                        <td style="padding: 2px;"><a href="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=idprojetos%>')">Visualizar Projeto</a></td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+            <a href='javascript: enviar()' style="position: absolute; margin-top: 30px;"> Enviar projeto selecionado para avaliação </a>
+            <%
+            } else {
+            %>
+            <center><h1>Não há projetos inseridos ainda!</h1></center>
+                <%            }
 
-            rs.close();
-        %>
-        <a href="javascript: carrega('projeto.jsp');" style="position: absolute; margin-top: 12px;">Novo Projeto</a>
-</div>
+                    rs.close();
+                %>
+            <a href="javascript: carrega('projeto.jsp');" style="position: absolute; margin-top: 12px;">Novo Projeto</a>
+        </div>
 
-</body>
+    </body>
 </html>

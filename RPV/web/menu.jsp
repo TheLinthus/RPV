@@ -13,7 +13,7 @@
     <%//Verifica se está logado
         if (session.getValue("loginUsuario") != null || session.getValue("senhaUsuario") != null) {
 //out.println("Você está logado com sucesso no sistema, por isso consegue ver está pagina. Seu login é: " + session.getValue("loginUsuario") + " e sua senha: " + session.getValue("senhaUsuario") + ". Clique <a href='logof.jsp'>aqui</a> para sair do sistema");
-    %>
+%>
 
     <div class="wrap background">
         <!-- end div #header -->
@@ -58,59 +58,59 @@
         }
     %>
     <script>
-        function go() {
-            carrega('<%=session.getValue("autorizacao").equals("coordenador") ? "projetos.jsp" : "visualizarProjetos.jsp"%>');
-        }
-    
-        function carrega(pagina) {
-            $("#corpo").html( '<center><img src="imagens/loading.gif" /></center>' );   
-            $("#corpo").load(pagina);
-        }
- 
-        function sleep(milliseconds) {
-            var start = new Date().getTime();
-            for (var i = 0; i < 1e7; i++) {
-                if ((new Date().getTime() - start) > milliseconds){
-                    break;
+            function go() {
+                carrega('<%=session.getValue("autorizacao").equals("coordenador") ? "projetos.jsp" : "visualizarProjetos.jsp"%>');
+            }
+
+            function carrega(pagina) {
+                $("#corpo").html('<center><img src="imagens/loading.gif" /></center>');
+                $("#corpo").load(pagina);
+            }
+
+            function sleep(milliseconds) {
+                var start = new Date().getTime();
+                for (var i = 0; i < 1e7; i++) {
+                    if ((new Date().getTime() - start) > milliseconds) {
+                        break;
+                    }
                 }
             }
-        }
-        function formulario() {
-            if(document.formulario.d_inicio.value=="") {
-                alert("Campo Data de Inicio deve ser preenchido.");
-                return;
+            function formulario() {
+                if (document.formulario.d_inicio.value == "") {
+                    alert("Campo Data de Inicio deve ser preenchido.");
+                    return;
+                }
+                if (document.formulario.d_fim.value == "") {
+                    alert("Campo Data de Fim deve ser preenchido.");
+                    return;
+                }
+                if (document.formulario.nome.value == "") {
+                    alert("Campo Descrição deve ser preenchido.");
+                    return;
+                }
+                if (document.formulario.titulo.value == "") {
+                    alert("Campo Titulo deve ser preenchido.");
+                    return;
+                }
+                var fup = document.formulario.file;
+                var fileName = fup.value;
+                if (fileName == null || fileName.length < 4) {
+                    alert("Arquivo não anexado ao formulario.");
+                    fup.focus();
+                    return;
+                }
+                var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+                if (ext != "pdf") {
+                    alert("Arquivo em formato invalido, somente PDF.");
+                    fup.focus();
+                    return;
+                }
+                var d_inicio = new Date(document.formulario.d_inicio.value);
+                var d_fim = new Date(document.formulario.d_fim.value);
+                if (d_fim.getTime() <= d_inicio.getTime()) {
+                    alert("Data de fim não pode ser menor que de inicio.");
+                } else {
+                    document.formulario.submit();
+                }
             }
-            if(document.formulario.d_fim.value=="") {
-                alert("Campo Data de Fim deve ser preenchido.");
-                return;
-            }
-            if(document.formulario.nome.value=="") {
-                alert("Campo Descrição deve ser preenchido.");
-                return;
-            }
-            if(document.formulario.titulo.value=="") {
-                alert("Campo Titulo deve ser preenchido.");
-                return;
-            }
-            var fup = document.formulario.file;
-            var fileName = fup.value;
-            if (fileName==null || fileName.length < 4) {
-                alert("Arquivo não anexado ao formulario.");
-                fup.focus();
-                return;
-            }
-            var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-            if (ext != "pdf") {
-                alert("Arquivo em formato invalido, somente PDF.");
-                fup.focus();
-                return;
-            }
-            var d_inicio = new Date(document.formulario.d_inicio.value);
-            var d_fim = new Date(document.formulario.d_fim.value);
-            if (d_fim.getTime() <= d_inicio.getTime()   ) {
-                alert("Data de fim não pode ser menor que de inicio.");
-            } else {
-                document.formulario.submit();
-            }
-        }
     </script>

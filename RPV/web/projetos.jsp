@@ -24,11 +24,44 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Projetos</title>
         <link rel="stylesheet" type="text/css" href="css//modal.css"/>
+
+        <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+
         <script type="text/javascript">
+            function refreshFilter() {
+                var f1 = document.getElementById("registrado").checked;
+                var f2 = document.getElementById("criado").checked;
+                var f3 = document.getElementById("alterado").checked;
+                var f4 = document.getElementById("homologado").checked;
+                var f5 = document.getElementById("naohomologado").checked;
+                var data = document.getElementById("tabela").rows;
+                if (f1 || f2 || f3 || f4 || f5) {
+                    for (var i = 1; i < data.length; i++) {
+                        var status = data.item(i).cells.item(4).innerHTML;
+                        switch (status) {
+                            case "Registrado" : data.item(i).style.display = f1 ? "" : "none"; break;
+                            case "Criado" : data.item(i).style.display = f2 ? "" : "none"; break;
+                            case "Alterado" : data.item(i).style.display = f3 ? "" : "none"; break;
+                            case "Homologado" : data.item(i).style.display = f4 ? "" : "none"; break;
+                            case "Não Homologado" : data.item(i).style.display = f5 ? "" : "none"; break;
+                        }
+                    }
+                } else {
+                    for (var i = 1; i < data.length; i++) {
+                        data.item(i).style.display="";
+                    }
+                }
+            }
+
+            $(function() {
+                $("table").tablesorter();
+            });
+
             function paste(id) {
-                var linha = document.getElementById("linha "+id);
+                var linha = document.getElementById("linha " + id);
                 document.getElementById("TITULO").innerHTML = linha.cells[0].innerHTML;
-                document.formulario.action = "enviaEmailEMudaStatus.jsp?id="+id;
+                document.formulario.action = "enviaEmailEMudaStatus.jsp?id=" + id;
             }
 
             $(document).ready(function() {
@@ -95,7 +128,7 @@
                     alert('Por favor, selecione Homologar ou Não Homologar o projeto.');
                     return false;
                 }
-                
+
                 if (document.formulario.homologacao[1].checked == true && document.formulario.texto.value == "") {
                     alert('Por favor, Adicione uma justificativa.');
                     return false;
@@ -112,14 +145,8 @@
                     document.formulario.ata2.focus();
                     return false;
                 }
-
             }
-            
-
-
         </script>
-
-
     </head>
     <body>
         <div id="mascara"></div>
@@ -132,7 +159,7 @@
                     <table>
                         <input type="radio" name="homologacao" value="homologar" id="homologar">HOMOLOGAR
                         <input type="radio" name="homologacao" value="naohomologar" id="naohomologar" />NÃO HOMOLOGAR<br>
-                       <!-- E-mail<input type="text" name="email" id="email"> -->
+                        <!-- E-mail<input type="text" name="email" id="email"> -->
                         <br />
                         <div id="formularioJust" style="display: none; border: 0px">
                             <!-- Justificativa <input  type="text" name="texto" />   -->
@@ -173,63 +200,74 @@
             <%
                 if (projetos.size() > 0) {
             %>
+            <div id="filters" style="margin-bottom: 10px; margin-top: 10px; float: left;">
+                <label><input onclick="javascript: refreshFilter();" type="checkbox" id="registrado" style="width: 20px;"/> Registrados</label>
+                <label><input onclick="javascript: refreshFilter();" type="checkbox" id="criado" style="width: 20px;"/> Criado</label>
+                <label><input onclick="javascript: refreshFilter();" type="checkbox" id="alterado" style="width: 20px;"/> Alterado</label>
+                <label><input onclick="javascript: refreshFilter();" type="checkbox" id="homologado" style="width: 20px;"/> Homologado</label>
+                <label><input onclick="javascript: refreshFilter();" type="checkbox" id="naohomologado" style="width: 20px;"/> Não Homologado</label>
+            </div>
             <div class='tabela'>
-                <table id='tabela' border='1px'>
-                    <tr class='header'>
-                        <td id='titulo'>Título</td>
-                        <td id='professor'>Professor</td>
-                        <td id='inicio'>Data início</td>
-                        <td id='fim'>Data fim</td>
-                        <td id='status'>Status</td>
-                        <td id='arquivo'>Arquivo</td>
-                        <td id='campo'></td>
-                        <td id='campo'></td>
-                    </tr>
-                    <%for (int i = 0; i < projetos.size(); i++) {%>
-                    <tr class='linhatabela' id="linha <%=projetos.get(i).getId()%>" onmouseover="hover(projetos.get(i).getId());">
-                        <td><%=projetos.get(i).getTitulo()%></td>
-                        <td><%=new banco.Projetos().professorVinculado(projetos.get(i).getId())%></td>
-                        <td><%=formater.format(projetos.get(i).getInicio())%></td>
-                        <td><%=formater.format(projetos.get(i).getFim())%></td>
-                        <%
-                            String status = "";
+                <table id='tabela' class="tablesorter" border='1px'>
+                    <thead>
+                        <tr>
+                            <th id='titulo' class='header'>Título</td>
+                            <th id='professor' class='header'>Professor</td>
+                            <th id='inicio' class='header'>Data início</td>
+                            <th id='fim' class='header'>Data fim</td>
+                            <th id='status' class='header'>Status</td>
+                            <th id='arquivo' class='header'>Arquivo</td>
+                            <th id='campo' class='header'></td>
+                            <th id='campo' class='header'></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for (int i = 0; i < projetos.size(); i++) {%>
+                        <tr class='linhatabela' id="linha <%=projetos.get(i).getId()%>" >
+                            <td><%=projetos.get(i).getTitulo()%></td>
+                            <td><%=new banco.Projetos().professorVinculado(projetos.get(i).getId())%></td>
+                            <td><%=formater.format(projetos.get(i).getInicio())%></td>
+                            <td><%=formater.format(projetos.get(i).getFim())%></td>
+                            <%
+                                String status = "";
 
-                            switch (projetos.get(i).getStatus()) {
-                                case 1:
-                                    status = "Criado";
-                                    break;
-                                case 2:
-                                    status = "Registrado";
-                                    break;
-                                case 3:
-                                    status = "Homologado";
-                                    break;
-                                case 4:
-                                    status = "Não Homologado";
-                                    break;
-                                case 5:
-                                    status = "Alterado";
-                                    break;
-                                case 6:
-                                    status = "Terminado";
-                                    break;
-                            }
-                        %>
-                        <td><%=status%></td>
-                        <td>
-                            <%if (projetos.get(i).getArquivoPDF() != 0) {%>
+                                switch (projetos.get(i).getStatus()) {
+                                    case 1:
+                                        status = "Criado";
+                                        break;
+                                    case 2:
+                                        status = "Registrado";
+                                        break;
+                                    case 3:
+                                        status = "Homologado";
+                                        break;
+                                    case 4:
+                                        status = "Não Homologado";
+                                        break;
+                                    case 5:
+                                        status = "Alterado";
+                                        break;
+                                    case 6:
+                                        status = "Terminado";
+                                        break;
+                                }
+                            %>
+                            <td><%=status%></td>
+                            <td>
+                                <%if (projetos.get(i).getArquivoPDF() != 0) {%>
 
-                            <a href="download.jsp?file=<%=projetos.get(i).getArquivoPDF()%>"><img src="imagens/icone_pdf.jpg"/></a>
+                                <a href="download.jsp?file=<%=projetos.get(i).getArquivoPDF()%>"><img src="imagens/icone_pdf.jpg"/></a>
+                                    <%}%>
+                            </td>
+                            <td>
+                                <%if (projetos.get(i).getStatus() == 2 || projetos.get(i).getStatus() == 5) {%>
+                                <a href="#janela1" rel="modal" onclick="javascrip: paste(<%=projetos.get(i).getId()%>)">Avaliar</a>
                                 <%}%>
-                        </td>
-                        <td>
-                            <%if (projetos.get(i).getStatus() == 2 || projetos.get(i).getStatus() == 5) {%>
-                            <a href="#janela1" rel="modal" onclick="javascrip: paste(<%=projetos.get(i).getId()%>)">Avaliar</a>
-                            <%}%>
-                        </td>
-                        <td style="padding: 2px;"><a href="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=projetos.get(i).getId()%>')">Visualizar Projeto</a></td>
-                    </tr>
-                    <%}%>
+                            </td>
+                            <td style="padding: 2px;"><a href="javascript: carrega('projeto.jsp?tipo=visualizar&id=<%=projetos.get(i).getId()%>')">Visualizar Projeto</a></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
                 </table>
             </div>
             <%
