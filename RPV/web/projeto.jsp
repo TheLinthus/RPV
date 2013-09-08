@@ -80,7 +80,9 @@
         });
     });
     function enviarForm() {
-       document.formularioMae.action = "alterarProjeto.jsp";
+        document.formulario.action = "alterarProjeto.jsp";
+        document.forms["formulario"].submit();
+        
     }
 
     $(document).ready(function() {
@@ -124,47 +126,47 @@
                 <p>Palavras-Chave:</p>
                 <p>Arquivo Projeto:</p>
             </div>
-            <form name="formularioMae" method="post">
-                <div class='form'>
-                    <form name="formulario" enctype="multipart/form-data" action="upload.jsp" method="post">
-                        <input type="number" name="id" value="<%=id%>" hidden/>
-                        <input type="text" name="tipo" value="novo" hidden/>
-                        <select name="equipe" multiple hidden></select>
-                        <p><input type="text" name="titulo" value="<%=titulo%>" required <%=view ? "disabled" : ""%>/></p>
-                        <p><input type="text" name="nome" value="<%=nome%>" required <%=view ? "disabled" : ""%>/></p>
-                        <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required <%=view ? "disabled" : ""%>/></p>
-                        <p><input type="date" name="d_fim" value="<%=d_fim%>" required <%=view ? "disabled" : ""%>/></p>
-                        <p><input type="button" name="equipebutton" value="Equipe" disabled <%=view ? "disabled" : ""%>/></p>
-                        <div class="styled-select"><p><select size="1" name="campus"  <%=view ? "disabled" : ""%>>
-                                    <%for (int i = 0;
-                                                i < listaDeCampus.size();
-                                                i++) {%>
-                                    <option <%if (campus == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeCampus.get(i)%></option>
-                                    <%}%>
-                                </select>
-                            </p>
-                            <p><select size="1" name="eixo"  <%=view ? "disabled" : ""%>>
-                                    <%for (int i = 0;
-                                                i < listaDeEixos.size();
-                                                i++) {%>
-                                    <option <%if (eixo == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeEixos.get(i)%></option>
-                                    <%}%>
-                                </select>
-                            </p></div>
-                        <p><input type="text" name="palavraschave" value="<%=palavraschave%>" <%=view ? "disabled" : ""%>></p>
-                            <%if (!view) {%>
-                        <p><input id='file' name="file" type="file"></p>
-                        <p><a href="javascript: formulario()">Enviar Projeto</a></p>
-                        <%} else {%>
-                        <p><a href="download.jsp?file=<%=idarquivo%>">Download Arquivo</a></p>
-                        <%}%>
+            <div class='form'>
+                <form name="formulario" enctype="multipart/form-data" action="upload.jsp" method="post">
+                    <input type="number" name="id" value="<%=id%>" hidden/>
+                    <input type="text" name="tipo" value="novo" hidden/>
+                    <select name="equipe" multiple hidden></select>
+                    <p><input type="text" name="titulo" value="<%=titulo%>" required <%=view ? "disabled" : ""%>/></p>
+                    <p><input type="text" name="nome" value="<%=nome%>" required <%=view ? "disabled" : ""%>/></p>
+                    <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required <%=view ? "disabled" : ""%>/></p>
+                    <p><input type="date" name="d_fim" value="<%=d_fim%>" required <%=view ? "disabled" : ""%>/></p>
+                    <p><input type="button" name="equipebutton" value="Equipe" disabled <%=view ? "disabled" : ""%>/></p>
+                    <div class="styled-select"><p><select size="1" name="campus"  <%=view ? "disabled" : ""%>>
+                                <%for (int i = 0;
+                                            i < listaDeCampus.size();
+                                            i++) {%>
+                                <option <%if (campus == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeCampus.get(i)%></option>
+                                <%}%>
+                            </select>
+                        </p>
+                        <p><select size="1" name="eixo"  <%=view ? "disabled" : ""%>>
+                                <%for (int i = 0;
+                                            i < listaDeEixos.size();
+                                            i++) {%>
+                                <option <%if (eixo == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeEixos.get(i)%></option>
+                                <%}%>
+                            </select>
+                        </p></div>
+                    <p><input type="text" name="palavraschave" value="<%=palavraschave%>" <%=view ? "disabled" : ""%>></p>
+                        <%if (!view) {%>
+                    <p><input id='file' name="file" type="file"></p>
+                    <p><a href="javascript: formulario()">Enviar Projeto</a></p>
+                    <%} else {%>
+                    <p><a href="download.jsp?file=<%=idarquivo%>">Download Arquivo</a></p>
+                    <%}%>
 
-                    </form>
+                </form>
+                <a id="botaoalterar"> Habilitar Campos </a>
+                <BUTTON id="botaoSalvarAlteracao" onclick="enviarForm();">Salvar Alteração</BUTTON>
 
-                    <a id="botaoalterar"> Habilitar Campos </a>
+            </div>
 
-                    <BUTTON id="botaoSalvarAlteracao" onclick="enviarForm();">Salvar Alteração</BUTTON>
-                </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
