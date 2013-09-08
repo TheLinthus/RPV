@@ -27,6 +27,7 @@
     if (tipo != null) {
 
         view = tipo.equals("visualizar");
+
         if (tipo.equals("erro")) {
             mensagem = request.getParameter("mensagem");
         } else if (tipo.equals("editar") || view) {
@@ -65,8 +66,8 @@
             }
         });
     });
-            
-            $(document).ready(function() {
+
+    $(document).ready(function() {
         $("#botaoalterar").click(function(evento) {
             var inputs = document.getElementsByTagName("select");
             for (var i = 0; i < inputs.length; i++) {
@@ -78,6 +79,12 @@
             }
         });
     });
+    function enviarForm() {
+        document.formulario.action = "alterarProjeto.jsp";
+        document.forms["formulario"].submit();
+
+    }
+
     $(document).ready(function() {
         $("#botaoSalvarAlteracao").css("display", "none");
 
@@ -154,11 +161,12 @@
                     <%}%>
 
                 </form>
-             
                 <a id="botaoalterar"> Habilitar Campos </a>
+                <BUTTON id="botaoSalvarAlteracao" onclick="enviarForm();">Salvar Alteração</BUTTON>
 
-                <a id="botaoSalvarAlteracao">Salvar Alteração</a> 
             </div>
+
         </div>
-    </body>
+    </div>
+</body>
 </html>
