@@ -1,3 +1,4 @@
+<%@page import="java.text.ParseException"%>
 <%@page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -33,35 +34,45 @@
             for (FileItem item : itens) {
 
                 if (item.getFieldName().equals("titulo")) {
+
                     titulo = item.getString();
                 }
                 if (item.getFieldName().equals("id")) {
+
                     id = item.getString();
                 }
                 if (item.getFieldName().equals("nome")) {
+
                     nome = item.getString();
                 }
                 if (item.getFieldName().equals("d_inicio")) {
+
                     d_inicio = item.getString();
                 }
                 if (item.getFieldName().equals("d_fim")) {
+
                     d_fim = item.getString();
                 }
                 if (item.getFieldName().equals("campus")) {
+
                     campus = item.getString();
                 }
 
                 if (item.getFieldName().equals("eixo")) {
+
                     eixo = item.getString();
                 }
 
                 if (item.getFieldName().equals("palavraschave")) {
+
                     palavraschave = item.getString();
                 }
             }
         }
-        out.println("titulo= "+titulo + " campus= " + campus + " diafim= " + d_fim + " diainicio= " + d_inicio + " eixo= " + eixo + " id= " + id + " nome= " + nome + " palavras= " + palavraschave);
+        // out.println("titulo= " + titulo + " campus= " + campus + " diafim= " + d_fim + " diainicio= " + d_inicio + " eixo= " + eixo + " id= " + id + " nome= " + nome + " palavras= " + palavraschave);
         projeto.alterarProjeto(Integer.parseInt(id), nome, d_inicio, d_fim, titulo, palavraschave, Integer.parseInt(eixo), Integer.parseInt(campus));
+        response.sendRedirect("menu.jsp");
+
     }
     /* if (item.getFieldName().equals("email")) {
      //info.setTitulo(item.getString());
@@ -77,6 +88,6 @@
      * 
      */
 
-   
+
 
 %>

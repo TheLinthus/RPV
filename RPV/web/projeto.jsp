@@ -82,7 +82,7 @@
     function enviarForm() {
         document.formulario.action = "alterarProjeto.jsp";
         document.forms["formulario"].submit();
-        
+
     }
 
     $(document).ready(function() {
