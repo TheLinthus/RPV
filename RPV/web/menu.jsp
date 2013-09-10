@@ -76,20 +76,24 @@
                 }
             }
             function formulario() {
-                if (document.formulario.d_inicio.value == "") {
-                    alert("Campo Data de Inicio deve ser preenchido.");
-                    return;
-                }
-                if (document.formulario.d_fim.value == "") {
-                    alert("Campo Data de Fim deve ser preenchido.");
-                    return;
-                }
-                if (document.formulario.nome.value == "") {
-                    alert("Campo Descrição deve ser preenchido.");
-                    return;
-                }
-                if (document.formulario.titulo.value == "") {
+                if (document.formulario.titulo.value === "") {
                     alert("Campo Titulo deve ser preenchido.");
+                    document.formulario.titulo.focus();
+                    return;
+                }
+                if (document.formulario.nome.value === "") {
+                    alert("Campo Descrição deve ser preenchido.");
+                    document.formulario.nome.focus();
+                    return;
+                }
+                if (document.formulario.d_inicio.value === "") {
+                    alert("Campo Data de Inicio deve ser preenchido.");
+                    document.formulario.d_inicio.focus();
+                    return;
+                }
+                if (document.formulario.d_fim.value === "") {
+                    alert("Campo Data de Fim deve ser preenchido.");
+                    document.formulario.d_fim.focus();
                     return;
                 }
                 var fup = document.formulario.file;

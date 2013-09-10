@@ -101,6 +101,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Projeto</title>
+        <script type="text/javascript">
+            $(function() {
+                var campo = document.getElementsByName("titulo");
+                campo.focus();
+            });
+        </script>
     </head>
     <body>
         <div id='contenthead' style="height: 30px; text-align: center;">
