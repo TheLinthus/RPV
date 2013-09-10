@@ -75,7 +75,7 @@
                 inputs[i].disabled = false;
 
                 $("#botaoSalvarAlteracao").css("display", "block");
-
+                $("#botaoalterar").css("display", "none");
             }
         });
     });
@@ -95,6 +95,7 @@
         });
     });
 </script>
+
 
 <!DOCTYPE html>
 <html>
@@ -140,7 +141,7 @@
                                 <%for (int i = 0;
                                             i < listaDeCampus.size();
                                             i++) {%>
-                                <option <%if (campus == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeCampus.get(i)%></option>
+                                <option <%if (campus == i + 1) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeCampus.get(i)%></option>
                                 <%}%>
                             </select>
                         </p>
@@ -148,7 +149,7 @@
                                 <%for (int i = 0;
                                             i < listaDeEixos.size();
                                             i++) {%>
-                                <option <%if (eixo == i) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeEixos.get(i)%></option>
+                                <option <%if (eixo == i + 1) {%>selected<%}%> value="<%=i + 1%>"><%=listaDeEixos.get(i)%></option>
                                 <%}%>
                             </select>
                         </p></div>
@@ -159,12 +160,12 @@
                     <%} else {%>
                     <p><a href="download.jsp?file=<%=idarquivo%>">Download Arquivo</a></p>
                     <%}%>
-
+                    <br />
                 </form>
-                <a id="botaoalterar"> Habilitar Campos </a>
-                <BUTTON id="botaoSalvarAlteracao" onclick="enviarForm();">Salvar Alteração</BUTTON>
 
             </div>
+            <BUTTON id="botaoalterar"> Habilitar Campos </BUTTON>
+            <BUTTON id="botaoSalvarAlteracao" onclick="enviarForm();">Salvar Alteração</BUTTON>
 
         </div>
     </div>
