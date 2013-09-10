@@ -101,12 +101,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Projeto</title>
-        <script type="text/javascript">
-            $(function() {
-                var campo = document.getElementsByName("titulo");
-                campo.focus();
-            });
-        </script>
     </head>
     <body>
         <div id='contenthead' style="height: 30px; text-align: center;">
@@ -137,7 +131,7 @@
                     <input type="number" name="id" value="<%=id%>" hidden/>
                     <input type="text" name="tipo" value="novo" hidden/>
                     <select name="equipe" multiple hidden></select>
-                    <p><input type="text" name="titulo" value="<%=titulo%>" required <%=view ? "disabled" : ""%>/></p>
+                    <p><input type="text" name="titulo" value="<%=titulo%>" required autofocus <%=view ? "disabled" : ""%>/></p>
                     <p><input type="text" name="nome" value="<%=nome%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="date" name="d_fim" value="<%=d_fim%>" required <%=view ? "disabled" : ""%>/></p>
