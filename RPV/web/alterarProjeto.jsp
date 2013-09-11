@@ -9,12 +9,12 @@
 <%@page import="model.Projeto"%>
 <% Projeto projeto = new Projeto();
 
+    String status = "";
     String titulo = "";
     String id = "";
     String nome = "";
     String d_inicio = "";
     String d_fim = "";
-    String campus = "";
     String eixo = "";
     String palavraschave = "";
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -37,6 +37,10 @@
 
                     titulo = item.getString();
                 }
+                if (item.getFieldName().equals("status")) {
+
+                    status = item.getString();
+                }
                 if (item.getFieldName().equals("id")) {
 
                     id = item.getString();
@@ -53,10 +57,7 @@
 
                     d_fim = item.getString();
                 }
-                if (item.getFieldName().equals("campus")) {
-
-                    campus = item.getString();
-                }
+               
 
                 if (item.getFieldName().equals("eixo")) {
 
@@ -70,9 +71,10 @@
             }
         }
         // out.println("titulo= " + titulo + " campus= " + campus + " diafim= " + d_fim + " diainicio= " + d_inicio + " eixo= " + eixo + " id= " + id + " nome= " + nome + " palavras= " + palavraschave);
-        projeto.alterarProjeto(Integer.parseInt(id), nome, d_inicio, d_fim, titulo, palavraschave, Integer.parseInt(eixo), Integer.parseInt(campus));
+        projeto.alterarProjeto(Integer.parseInt(id),Integer.parseInt(status), nome, d_inicio, d_fim, titulo, palavraschave, Integer.parseInt(eixo));
         response.sendRedirect("menu.jsp");
 
+       // out.println("status= "+status);
     }
     /* if (item.getFieldName().equals("email")) {
      //info.setTitulo(item.getString());

@@ -196,6 +196,7 @@ public class JDBC {
                 projeto.setCampus(new Campus(rs.getInt("campus_idcampus"), ""));
                 projeto.setEixo(new Eixo(rs.getInt("eixo_ideixo"), ""));
                 projeto.setArquivoPDF(rs.getInt("arquivos_idarquivos"));
+                projeto.setStatus(rs.getInt("status"));
 
 
                 list.add(projeto);
