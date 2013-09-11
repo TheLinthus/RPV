@@ -15,6 +15,7 @@
 <%
     String tipo, titulo, nome, equipe, d_inicio, d_fim, p_execucao, id, palavraschave, mensagem;
     int eixo, campus, idarquivo;
+    int status = 0;
     tipo = request.getParameter("tipo");
     eixo = campus = idarquivo = 0;
     titulo = nome = equipe = d_inicio = d_fim = palavraschave = mensagem = "";
@@ -37,6 +38,10 @@
             p.setId(Integer.parseInt(id));
             p.atualizar();
 
+            status = p.getStatus();
+            
+            
+            
             titulo = p.getTitulo();
             nome = p.getNome();
             equipe = p.getEquipe();
@@ -67,6 +72,7 @@
         });
     });
 
+
     $(document).ready(function() {
         $("#botaoalterar").click(function(evento) {
             var inputs = document.getElementsByTagName("select");
@@ -94,6 +100,7 @@
 
         });
     });
+    
 </script>
 
 
