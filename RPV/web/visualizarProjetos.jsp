@@ -123,9 +123,6 @@
                             case 6:
                                 status = "Terminado";
                                 break;
-                            case 7:
-                                status = "Em Alteração";
-                                break;
                         }
 
 

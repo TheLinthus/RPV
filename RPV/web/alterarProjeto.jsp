@@ -8,7 +8,7 @@
 <%@page import="com.sun.org.apache.bcel.internal.generic.ALOAD"%>
 <%@page import="model.Projeto"%>
 <% Projeto projeto = new Projeto();
-    String status = "";
+
     String titulo = "";
     String id = "";
     String nome = "";
@@ -36,10 +36,6 @@
                 if (item.getFieldName().equals("titulo")) {
 
                     titulo = item.getString();
-                }
-                if (item.getFieldName().equals("status")) {
-
-                    status = item.getString();
                 }
                 if (item.getFieldName().equals("id")) {
 
@@ -74,7 +70,7 @@
             }
         }
         // out.println("titulo= " + titulo + " campus= " + campus + " diafim= " + d_fim + " diainicio= " + d_inicio + " eixo= " + eixo + " id= " + id + " nome= " + nome + " palavras= " + palavraschave);
-        projeto.alterarProjeto(Integer.parseInt(id),Integer.parseInt(status), nome, d_inicio, d_fim, titulo, palavraschave, Integer.parseInt(eixo), Integer.parseInt(campus));
+        projeto.alterarProjeto(Integer.parseInt(id), nome, d_inicio, d_fim, titulo, palavraschave, Integer.parseInt(eixo), Integer.parseInt(campus));
         response.sendRedirect("menu.jsp");
 
     }

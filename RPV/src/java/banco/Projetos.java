@@ -170,13 +170,13 @@ public class Projetos extends JDBC {
         }
     }
 
-    public void alterarProjeto(int id,int status, String nome,String d_inicio,String d_fim,String titulo,String palavraschave,int eixo_ideixo,int campus_idcampus) {
+    public void alterarProjeto(int id, String nome,String d_inicio,String d_fim,String titulo,String palavraschave,int eixo_ideixo,int campus_idcampus) {
         try {
             connect();
 
             Statement com = con.createStatement();
         
-            com.execute("UPDATE rpv.projeto SET nome =  '" + nome + "',d_inicio= '"+d_inicio+"',d_fim='"+d_fim+"', titulo='"+titulo+"', palavraschave='"+palavraschave+"', eixo_ideixo='"+eixo_ideixo+"',campus_idcampus='"+campus_idcampus+"',status='"+status+"'  WHERE idprojeto = " + id);
+            com.execute("UPDATE rpv.projeto SET nome =  '" + nome + "',d_inicio= '"+d_inicio+"',d_fim='"+d_fim+"', titulo='"+titulo+"', palavraschave='"+palavraschave+"', eixo_ideixo='"+eixo_ideixo+"',campus_idcampus='"+campus_idcampus+"'  WHERE idprojeto = " + id);
 
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
