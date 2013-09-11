@@ -37,11 +37,7 @@
             Projeto p = new Projeto();
             p.setId(Integer.parseInt(id));
             p.atualizar();
-
             status = p.getStatus();
-            
-            
-            
             titulo = p.getTitulo();
             nome = p.getNome();
             equipe = p.getEquipe();
@@ -75,14 +71,24 @@
 
     $(document).ready(function() {
         $("#botaoalterar").click(function(evento) {
-            var inputs = document.getElementsByTagName("select");
+            //var inputs = document.getElementsByTagName("select");
+            //for (var i = 0; i < inputs.length; i++) {
+
+             //   inputs[i].disabled = false;
+
+
+           // }
+            $("#botaoSalvarAlteracao").css("display", "block");
+            var inputs = document.getElementsByName("eixo");
             for (var i = 0; i < inputs.length; i++) {
 
                 inputs[i].disabled = false;
 
-                $("#botaoSalvarAlteracao").css("display", "block");
-                $("#botaoalterar").css("display", "none");
+
             }
+            $("#botaoSalvarAlteracao").css("display", "block");
+            $("#botaoalterar").css("display", "none");
+            
         });
     });
     function enviarForm() {
@@ -100,7 +106,7 @@
 
         });
     });
-    
+
 </script>
 
 
@@ -143,7 +149,7 @@
                     <p><input type="text" name="nome" value="<%=nome%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="date" name="d_inicio" value="<%=d_inicio%>" required <%=view ? "disabled" : ""%>/></p>
                     <p><input type="date" name="d_fim" value="<%=d_fim%>" required <%=view ? "disabled" : ""%>/></p>
-                    <p><input type="button" name="equipebutton" value="Equipe" disabled <%=view ? "disabled" : ""%>/></p>
+                    <p><input type="button" name="equipebutton" value="Equipe" disabled <%=view ? "disabled" : ""%>/></p>                  
                     <div class="styled-select"><p><select size="1" name="campus"  <%=view ? "disabled" : ""%>>
                                 <%for (int i = 0;
                                             i < listaDeCampus.size();
@@ -161,7 +167,9 @@
                             </select>
                         </p></div>
                     <p><input type="text" name="palavraschave" value="<%=palavraschave%>" <%=view ? "disabled" : ""%>></p>
-                        <%if (!view) {%>
+                    <p><input type="text" name="status" value="<%=status%>" <%=view ? "disabled" : ""%> style="display: none"></p>
+
+                    <%if (!view) {%>
                     <p><input id='file' name="file" type="file"></p>
                     <p><a href="javascript: formulario()">Enviar Projeto</a></p>
                     <%} else {%>
@@ -171,7 +179,10 @@
                 </form>
 
             </div>
+                 <!--   <INPUT type="button" value="alerta status" onclick="alert( '<%=status%>' );"/> -->
+            <% if (status == 1 || status == 7 || status == 4) {%>
             <BUTTON id="botaoalterar"> Habilitar Campos </BUTTON>
+                <% }%>
             <BUTTON id="botaoSalvarAlteracao" onclick="enviarForm();">Salvar Alteração</BUTTON>
 
         </div>
